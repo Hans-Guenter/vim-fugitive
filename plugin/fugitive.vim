@@ -2485,7 +2485,8 @@ function! s:ReplaceCmd(cmd,...) abort
   finally
     try
       silent exe 'keepalt file '.s:fnameescape(fn)
-    catch /^Vim\%((\a\+)\)\=:E302/
+      " I sometimes see error E301 here (not E302) Simon, 01.07.2016
+    catch /^Vim\%((\a\+)\)\=:E30[12]/
     endtry
     call delete(tmp)
     if fnamemodify(bufname('$'), ':p') ==# tmp
